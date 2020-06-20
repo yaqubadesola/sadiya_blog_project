@@ -1,5 +1,5 @@
 # Nodejs-blog
-a simple blog using nodejs express
+a simple blog using nodejs express and mysql
 
 ## Requirements :
 - Mysql database
