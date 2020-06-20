@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `content` varchar(255) DEFAULT NULL,
+  `content` varchar(3000) DEFAULT NULL,
   `post_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

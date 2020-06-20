@@ -23,7 +23,32 @@
               <a class="nav-link" href="/"> Blog <span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          
+
+          <% if(verified) { %>
+            <!-- If the user logged in -->
+
+            <ul class="nav justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" style="color: white" href="/new"> Create <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+
+            <ul class="nav justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" style="color: white" href="/logout"> Logout <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+
+          <% } else { %>
+            <!-- else -->
+            <ul class="nav justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" style="color: white" href="/login"> Login <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+
+          <% } %>
+
         </div>
       </nav>
 
@@ -35,22 +60,29 @@
         
         <!-- <%= post.id %> -->
 
-        <br>
-        <% if(verified) { %>
-          <a href="/new" class="btn btn-success">+</a>
-        <% } %>
-
         <div class="simple-space col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h4><span class="badge badge-dark"><%= post.id %></span> <%= Truncate(post.title, 60)%></h4>
+                <h4><span class="badge badge-dark"><%= post.id %></span> <%= Truncate(post.title, 50)%></h4>
                 <p class="date"> <%= post.post_date %></p>
                 <p class="card-text"><%= Truncate(post.content, 200) %></p>
                 <a href="/post/<%= post.id %>" class="btn btn-dark">Read</a>
+                
+                
                 <% if(verified) { %>
-                  <a href="/edit/<%= post.id %>" class="btn btn-primary">Edit</a>
-                  <a href="/delete/<%= post.id %>" class="btn btn-danger">Delete</a>
+
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Actions
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="/edit/<%= post.id %>">Edit</a>
+                      <a class="dropdown-item" href="/delete/<%= post.id %>">Delete</a>
+                    </div>
+                  </div>
                 <% } %>
+
+
               </div>
             </div>
         </div>

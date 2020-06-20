@@ -20,6 +20,7 @@ app.use(urlencoded({extended: false}));
 
 
 // Session
+// Change the session secret key later
 app.use(session({
     secret: "xX51215Ad5615Adfdsfzeggper",
     resave: true,
@@ -148,7 +149,7 @@ app.get('/post/:id', (req, res) => {
         'SELECT * FROM posts WHERE id = ?',
         [req.params.id],
         (error, results) => {
-            res.render('read.ejs', {post: results[0]})
+            res.render('read.ejs', {post: results[0], verified: req.session.loggedin})
         }
     );
 });
