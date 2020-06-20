@@ -16,4 +16,4 @@ a simple blog using nodejs express
 
 ![sql-import](http://www.mediafire.com/convkey/56d9/01o11v80j8ftqbuzg.jpg)
 
-- Now you can launch the app.js using node
+- Now you can launch the `app.js` using node
