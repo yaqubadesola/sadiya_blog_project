@@ -33,7 +33,7 @@ app.get('/login', (req, res) => {
     {
         res.redirect('/');
     } else {
-        res.render('login.ejs');
+        res.render('login.ejs', {verified: req.session.loggedin});
     }
 });
 
@@ -74,7 +74,7 @@ app.get('/user', (req, res) => {
 
 
 
-// Blog
+// Index page
 app.get('/', (req, res) => {
     connection.query(
         'SELECT * FROM posts',
@@ -84,14 +84,14 @@ app.get('/', (req, res) => {
     );
 });
 
-// edit page
+// Edit page
 app.get('/edit/:id', (req, res) => {
     if (req.session.loggedin) {
         connection.query(
             'SELECT * FROM posts WHERE id = ?',
             [req.params.id],
             (error, results) => {
-                res.render('edit.ejs', {post: results[0]});
+                res.render('edit.ejs', {post: results[0], verified: req.session.loggedin});
             }
         );
     }
@@ -128,7 +128,7 @@ app.get('/delete/:id' , (req, res) => {
 app.get('/new', (req, res) => {
     
     if(req.session.loggedin) {
-        res.render('new.ejs');
+        res.render('new.ejs', {verified: req.session.loggedin});
     } else {
         res.redirect('/login');
     }
