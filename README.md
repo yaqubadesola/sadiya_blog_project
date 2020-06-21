@@ -12,7 +12,7 @@ a simple blog using nodejs express and mysql
 
 - Change the session secret in `/config/session.json`
 
-- Import the sql files in the `SQL` folder after creating a database
+- Import the sql files from the `SQL` folder after creating a database
 
 ![sql-files](http://www.mediafire.com/convkey/9c59/blt0vp9ipiexduczg.jpg)
 
