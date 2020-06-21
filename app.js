@@ -6,11 +6,16 @@ const { urlencoded } = require('express');
 
 const truncate = require('truncate');
 
+
+// JSON SETTINGS
+const sessionconfig = require('./config/session.json');
+const dbconfig = require('./config/database.json');
+
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "test"
+    host: dbconfig.host,
+    user: dbconfig.user,
+    password: dbconfig.password,
+    database: dbconfig.database
 });
 
 
@@ -22,9 +27,9 @@ app.use(urlencoded({extended: false}));
 // Session
 // Change the session secret key later
 app.use(session({
-    secret: "xX51215Ad5615Adfdsfzeggper",
-    resave: true,
-    saveUninitialized: true
+    secret: sessionconfig.secret,
+    resave: sessionconfig.resave,
+    saveUninitialized: sessionconfig.saveUninitialized
 }));
 
 // Login system
@@ -149,7 +154,7 @@ app.get('/post/:id', (req, res) => {
         'SELECT * FROM posts WHERE id = ?',
         [req.params.id],
         (error, results) => {
-            res.render('read.ejs', {post: results[0], verified: req.session.loggedin})
+            res.render('read.ejs', {post: results[0], verified: req.session.loggedin});
         }
     );
 });
