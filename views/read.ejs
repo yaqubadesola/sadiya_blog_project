@@ -8,7 +8,7 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="7ra2I2aC"></script>
     
-    <title>READ</title>
+    <title><%= post.title %> | blog</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
       <center>
         <h1><%= post.title %></h1> <br>
         <hr style="margin: 1% 30%">
-        <p style="width: 40%; word-wrap: break-word;"><%- post.content %></p>
+        <div style="width: 40%; word-wrap: break-word;"><%- post.content %></div>
         <br>
 
         <hr style="margin: 1% 30%">
