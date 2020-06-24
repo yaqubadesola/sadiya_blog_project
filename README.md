@@ -6,11 +6,13 @@ a simple blog using nodejs express and mysql
 - Nodejs
 
 ## How to use ?
-- First you need to change the sql database informations 
+- First you need to change the sql database informations in `/config/database.json`
 
 ![sql-info](https://www.mediafire.com/convkey/a4a9/qki7ar2a6lz0q9zzg.jpg)
 
-- Import the sql files in the `SQL` folder after creating a database
+- Change the session secret in `/config/session.json`
+
+- Import the sql files from the `SQL` folder after creating a database
 
 ![sql-files](http://www.mediafire.com/convkey/9c59/blt0vp9ipiexduczg.jpg)
 
