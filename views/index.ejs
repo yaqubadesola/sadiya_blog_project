@@ -26,7 +26,7 @@
               <div class="card-body">
                 <h4><span class="badge badge-dark"><%= post.id %></span> <%= Truncate(post.title, 50)%></h4>
                 <p class="date"> <%= post.post_date %></p>
-                <p class="card-text"><%= Truncate(post.content, 200) %></p>
+                <!-- <p class="card-text"><%= Truncate(post.content, 200) %></p> -->
                 <a href="/post/<%= post.id %>" class="btn btn-dark">Read</a>
                 
                 

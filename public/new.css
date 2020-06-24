@@ -2,3 +2,7 @@
 .form-fix {
     padding: 0 10%;
 }
+
+#preview-div {
+    background-color: rgb(216, 216, 216);
+}

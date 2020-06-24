@@ -30,6 +30,31 @@
                 <input type="submit" value="Submit" class="btn btn-dark">
             </form>
 
+            <br>
+            
+            <hr>
+            <center>
+                <h1>Preview</h1>
+                <div id="preview-div">
+                    
+                </div>
+            </center>
+
+
+            <script>
+                $(document).ready(function(){
+
+                    $("#contentarea").ready(function(){
+                        var content = $("#contentarea").val();
+                        $("#preview-div").html(content);
+                    });
+
+                    $("#contentarea").on('keyup', function() {
+                        var content = $("#contentarea").val();
+                        $("#preview-div").html(content);
+                    });
+                });
+            </script>
 
             <script>
                 $(document).ready(function(){
