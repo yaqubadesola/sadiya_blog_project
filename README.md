@@ -1,4 +1,4 @@
-# Nodejs-blog
+# This is a blog written in mysql and nodejs express framework
 a simple blog using nodejs express and mysql
 
 ## Requirements :
