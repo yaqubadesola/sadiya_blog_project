@@ -5,6 +5,9 @@ a simple blog using nodejs express and mysql
 - Mysql database
 - Nodejs
 
+## Custom Versions ?
+- [expressjs-sqlite-blog](https://github.com/JustPowerful/expressjs-sqlite-blog)
+
 ## How to use ?
 - First you need to change the sql database informations in `/config/database.json`
 
