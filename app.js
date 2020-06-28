@@ -46,7 +46,7 @@ app.get('/login', (req, res) => {
 app.post('/auth', (req, res) => {
 
     var username = req.body.username;
-    var password = req.body.username;
+    var password = req.body.password;
     connection.query(
         'SELECT * FROM accounts WHERE username = ? AND password = ?',
         [username, password],
