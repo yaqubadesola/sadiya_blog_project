@@ -1,9 +1,12 @@
-# Nodejs-blog
+# [1] This is a blog written in mysql and nodejs express framework
 a simple blog using nodejs express and mysql
 
 ## Requirements :
 - Mysql database
 - Nodejs
+
+## Custom Versions ?
+- [expressjs-sqlite-blog](https://github.com/JustPowerful/expressjs-sqlite-blog)
 
 ## How to use ?
 - First you need to change the sql database informations in `/config/database.json`
