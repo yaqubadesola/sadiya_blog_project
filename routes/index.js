@@ -1,28 +1,29 @@
 const express = require('express')
-const session = require('express-session')
 const router = express.Router();
-const connection = require('../models/db')
-const truncate = require('truncate');
+
+// the indexController
+const indexController = require('../controllers/index')
 
 // indexing methods
-router.get('/', (req, res) => {
-    connection.query(
-        'SELECT * FROM posts',
-        (error, results) => {
-            res.render('index.ejs', {posts: results, verified: req.session.loggedin, Truncate: truncate});
-        }
-    );
-});
+router.get('/', indexController.index);
 
 
 // login and register methods
-router.get('/login', (req, res) => {
-    if (req.session.loggedin)
-    {
-        res.redirect('/');
-    } else {
-        res.render('login.ejs', {verified: req.session.loggedin});
-    }
-});
+router.get('/login', indexController.login);
+
+// administration pages
+// Edit page
+router.get('/edit/:id', indexController.edit);
+router.post('/update/:id', indexController.update);
+
+// Delete
+router.get('/delete/:id' , indexController.delete);
+
+
+router.get('/new', indexController.new_get);
+
+router.post('/new', indexController.new_post);
+
+router.get('/post/:id', indexController.post);
 
 module.exports = router
