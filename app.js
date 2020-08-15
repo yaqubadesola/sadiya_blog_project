@@ -1,27 +1,15 @@
 const express = require('express');
-const mysql = require('mysql');
 const session = require('express-session');
 const { render } = require('ejs');
 const { urlencoded } = require('express');
 
-const truncate = require('truncate');
-
-
-// JSON SETTINGS
-const sessionconfig = require('./config/session.json');
-const dbconfig = require('./config/database.json');
-
-const connection = mysql.createConnection({
-    host: dbconfig.host,
-    user: dbconfig.user,
-    password: dbconfig.password,
-    database: dbconfig.database
-});
-
-
 app = express();
 app.use(express.static('public'));
 app.use(urlencoded({extended: false}));
+
+// JSON SETTINGS
+const sessionconfig = require('./config/session.json');
+const connection = require('./models/db')
 
 
 // Session
@@ -32,62 +20,15 @@ app.use(session({
     saveUninitialized: sessionconfig.saveUninitialized
 }));
 
-// Login system
-app.get('/login', (req, res) => {
-    if (req.session.loggedin)
-    {
-        res.redirect('/');
-    } else {
-        res.render('login.ejs', {verified: req.session.loggedin});
-    }
-});
+// Routers
+let router = require('./routes/index')
+let authRouter = require('./routes/auth')
+let profileRouter = require('./routes/profile')
 
+app.use('/', router) // index router {index, login, register pages}
+app.use('/auth', authRouter) // auth router
+app.use('/profile', profileRouter) // profile router
 
-app.post('/auth', (req, res) => {
-
-    var username = req.body.username;
-    var password = req.body.password;
-    connection.query(
-        'SELECT * FROM accounts WHERE username = ? AND password = ?',
-        [username, password],
-        (error, results) => {
-            if (results.length > 0) {
-                req.session.loggedin = true;
-				req.session.username = username;
-				res.redirect('/');
-            } else {
-                res.send('Incorrect password or username');
-            }
-        }
-    );
-});
-
-
-app.get('/logout', (req, res) => {
-    req.session.loggedin = false;
-    req.session.username = null;
-    res.redirect('/');
-});
-
-app.get('/user', (req, res) => {
-    if (req.session.loggedin) {
-        res.send(req.session.username);
-    } else {
-        res.redirect('/login');
-    }
-});
-
-
-
-// Index page
-app.get('/', (req, res) => {
-    connection.query(
-        'SELECT * FROM posts',
-        (error, results) => {
-            res.render('index.ejs', {posts: results, verified: req.session.loggedin, Truncate: truncate});
-        }
-    );
-});
 
 // Edit page
 app.get('/edit/:id', (req, res) => {
@@ -158,7 +99,5 @@ app.get('/post/:id', (req, res) => {
         }
     );
 });
-
-
 
 app.listen(process.env.PORT || 3000);
