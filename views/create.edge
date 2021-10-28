@@ -1,0 +1,58 @@
+@layout('layout/app')
+@section('content')
+   <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/assets/img/contact-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>New Post</h1>
+                        <span class="subheading">blogging is fun, create a new post.</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                 <ul class="list-group">
+                                    @each(error in errors)
+                                    <li class="list-group-item" style="color:red">
+                                            {{error}}
+                                    </li>
+                                    @endeach
+                                </ul>
+                               <form action="/post/store" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="title" class="form-control" name="title" id="title" placeholder="Enter title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Decription</label>
+                                        <input type="description" name="description" class="form-control" id="description" placeholder="Description">
+                                    </div>
+                                    <div class="form-group">
+                                       
+                                        <label for="content">Content</label>
+                                        <textarea rowS="5" cols="50" class="form-control" id="content" name="content" placeholder="Content">
+                                        </textarea>
+                                    </div>
+                                     <div class="form-group mt-5">
+                                       
+                                        <label for="image">Image</label>
+                                        <input type="file" id="image" placeholder="" name="image" class="form-control">
+                               
+                                    </div>
+                                     <div class="form-group text-center mt-5">
+                                            <button style="text-align:center" class="btn btn-primary text-uppercase" id="submitButton"
+                                                type="submit">Create Post
+                                            </button>
+                                    </div>
+                                     
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+@endsection

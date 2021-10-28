@@ -1,0 +1,61 @@
+@layout('layout/app')
+
+@section('content')
+   <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/assets/img/user_register.png')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Login</h1>
+                        <span class="subheading">Already have an account?</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                               <form action="/auth/login" method="post">
+                                 <ul class="list-group">
+                                    @if(errors)
+                                        @each(error in errors)
+                                        <li class="list-group-item" style="color:red">
+                                             {{error}}
+                                        </li>
+                                        @endeach       
+                                    @endif
+                                </ul>
+                                    <div class="form-group">
+                                         <div class="col-md-12">
+                                             @if(message)
+                                                <h6 style="color:green">{{message}}</h6>
+                                            @endif
+                                        </div>
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+                                    </div>
+                                    <!--  <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" class="form-control" id="email" placeholder="User Email">
+                                    </div>  -->
+                                    <div class="form-group">
+                                        
+                                        <label for="password">Password</label>
+                                        <input class="form-control" type="password" id="password" name="password" placeholder="password">
+                                     
+                                    </div>
+                                     
+                                     <div class="form-group text-center mt-5">
+                                            <button style="text-align:center" class="btn btn-primary text-uppercase" id="submitButton"
+                                                type="submit">Login
+                                            </button>
+                                    </div>
+                                     
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+@endsection

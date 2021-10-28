@@ -2,5 +2,5 @@
     "host": "localhost",
     "user": "root",
     "password": "",
-    "database": "test"
+    "database": "node_sql"
 }
